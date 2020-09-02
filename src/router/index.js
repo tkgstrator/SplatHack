@@ -1,6 +1,8 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
 import Home from "../views/Home.vue"
+import Tutorial from "../views/Tutorial.vue"
+import Install from "../views/Install.vue"
 
 Vue.use(VueRouter)
 
@@ -11,14 +13,14 @@ const routes = [
     component: Home
   },
   {
-    path: "Home",
-    name: "About",
-    component: () => import(/* webpackChunkName: "about" */ "../views/About.vue")
+    path: "/tutorials",
+    name: "Tutorial",
+    component: Tutorial
   },
   {
-    path: "Home",
-    name: "Tutorial",
-    component: () => import(/* webpackChunkName: "about" */ "../views/Tutorial.vue")
+    path: "/install",
+    name: "Install",
+    component: Install
   },
 ]
 

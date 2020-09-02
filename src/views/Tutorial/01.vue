@@ -1,5 +1,5 @@
 <template>
-  <div class="tutorial">
+  <div class="description">
     <h1>チュートリアル</h1>
     <v-text-area>
       SplatHackのチュートリアルは逆アセンブラを用いて誰でも簡単にコード開発の楽しみを体験できるものになっています.

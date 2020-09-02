@@ -3,29 +3,20 @@
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@500&display=swap" rel="stylesheet" />
     <v-toolbar dense>
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
-      <v-toolbar-title>SplatHack</v-toolbar-title>
+      <v-toolbar-title width="100px">SplatHack</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-items>
-        <v-btn text>For Enterprise</v-btn>
-
-        <v-menu offset-y open-on-hover>
-          <template v-slot:activator="{on}">
-            <v-btn v-on="on" text>チュートリアル</v-btn>
-          </template>
-          <v-list>
-            <v-list-item>
-              <v-list-item-content>
-                <v-list-item-title>Consulting and support</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-            <v-list-item>
-              <v-list-item-content>
-                <v-list-item-title>Discord community</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-        </v-menu>
-      </v-toolbar-items>
+      <v-tabs right show-arrows="true">
+        <v-tab>
+          <router-link to="/">HOME</router-link>
+        </v-tab>
+        <v-tab>
+          <router-link to="/install">INSTALL</router-link>
+        </v-tab>
+        <v-tab>
+          <router-link to="/tutorials">TUTORIAL</router-link>
+        </v-tab>
+        <!-- <v-tab></v-tab> -->
+      </v-tabs>
       <v-btn icon>
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
@@ -40,9 +31,14 @@
 <style>
 .v-card {
   font-family: "M PLUS 1p";
+  margin-bottom: 50px;
 }
 
 .v-sheet.v-toolbar:not(.v-sheet--outlined) {
   box-shadow: none !important;
+}
+
+.v-application a {
+  text-decoration: none;
 }
 </style>
