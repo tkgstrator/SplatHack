@@ -16,7 +16,12 @@
     <h2 class="external-link" @click="openURL('https://ghidra-sre.org/')">GHIDRA</h2>
     <p>NCAが開発したARMの逆アセンブルに対応した逆アセンブラ.</p>
     <p>Javaで開発されたためいろいろとっつきにくいところがあるものの, 有償であるIDA Proと遜色ない機能があり, 本チュートリアル程度であればそつなくこなせます.</p>
-
+    <p>
+      実行にはJDK11のインストールが必須で,
+      <a
+        href="https://download.oracle.com/otn-pub/java/jdk/11.0.8+10/dc5cf74f97104e8eac863698146a7ac3/jdk-11.0.8_windows-x64_bin.exe?AuthParam=1599142386_3d533f455032a14db64efe40bb20a641"
+      >公式サイト</a>でも配布されているのでインストールしましょう.
+    </p>
     <h2 class="external-link" @click="openURL('https://github.com/Adubbz/Ghidra-Switch-Loader/releases/tag/1.4.0')">Ghidra Switch Loader</h2>
     <p>GHIDRAで直接NSOを読み込むためのプラグイン.</p>
     <!-- <p>ただし, 先述したように本ページでは暗号化されているNSOではなく復号したELFを読み込ませることを推奨しているため, 使い方については省略します.</p> -->
@@ -68,8 +73,18 @@ call "%~dp0support\launch.bat" bg Ghidra "%MAXMEM%" "" ghidra.GhidraRun %*
     <p>(Switch) IPC Analyzerにチェックを入れておくことでvtableの解析も可能になります.</p>
     <p>パソコンのスペックにもよりますが, 解析には30分~60分ほどかかります.</p>
     <h1>GHIDRAの外観の変更</h1>
-    <p>GHIDRAはデフォルトの設定だと非常に</p>
-    <p></p>
+    <p>GHIDRAはデフォルトの設定だと非常に見づらいため, 外観の変更を行ったほうが良いです.</p>
+    <h2>フォントのインストール</h2>
+    <p>
+      GHIDRAのデフォルトのフォントはmonospacedなのですが, これを別の等幅フォントに変えてしまいましょう. おすすめは
+      <a href="https://www.wfonts.com/font/roboto-mono">Roboto Mono</a>ですが
+      自分が見やすいと思うフォントであれば何でも構いません.
+    </p>
+    <h2>フォント・外観の変更</h2>
+    <p>Listing Displayの設定から見た目を変更します. また, Listing Fieldsの項目から各種フィールドの表示設定を変えておくと良いでしょう.</p>
+    <v-img src="~@/assets/img/ghidra_listing_display.gif" width="80%" max-width="600px"></v-img>
+    <v-data-table :headers="headers" :items="settings" dark hide-default-footer></v-data-table>
+    <p>以上でインストールとGHIDRAのセットアップは終了です.</p>
   </div>
 </template>
 
@@ -81,30 +96,49 @@ export default {
     }
   },
   data: () => ({
-    cardslv1: [
+    headers: [
       {
-        title: "スペシャルコスト0",
-        text: "まずは全てのブキのスペシャルコストを0にして, いつでも使えるようにしてみましょう.",
-        link: "tutorials/01",
-        flex: 6
+        text: "Field",
+        align: "start",
+        sortable: false,
+        value: "field"
       },
       {
-        title: "スペシャルコスト255",
-        text: "実用上は不要ですが, 0ではない値への設定方法も覚えておきましょう.",
-        link: "tutorials/01",
-        flex: 6
+        text: "Column",
+        sortable: false,
+        value: "column"
       },
       {
-        title: "全ブキアンロック",
-        text: "参照するパラメータを変更して, 未実装ブキを除く全てのブキをアンロックしてみましょう.",
-        link: "tutorials/01",
-        flex: 6
+        text: "Value",
+        sortable: false,
+        value: "value"
+      }
+    ],
+    settings: [
+      {
+        field: "Address Field",
+        column: "Minimum Number of Address digits",
+        value: "8",
       },
       {
-        title: "ガチマッチ時間変更",
-        text: "ガチマッチの試合時間は300秒ですが, この時間を好きなように変更してみましょう.",
-        link: "tutorials/01",
-        flex: 6
+        field: "Address Field",
+        column: "Justification",
+        value: "Right",
+      },
+      {
+        field: "Bytes Field",
+        column: "Byte Group Size",
+        value: "4",
+      },
+      {
+        field: "Bytes Field",
+        column: "Display in Upper Case",
+        value: "True",
+      },
+      {
+        field: "Bytes Field",
+        column: "Maximun Lines to Display",
+        value: "1",
       },
     ],
   }),

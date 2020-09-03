@@ -20,13 +20,13 @@
 </script>
 
 <style>
-p {
-  font-size: 20px;
-}
-
 .description {
   margin: 0 auto;
   width: 80%;
+}
+
+.description p {
+  font-size: 20px;
 }
 
 ul.top-warning {
