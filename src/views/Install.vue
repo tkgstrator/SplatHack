@@ -27,6 +27,12 @@
 
     <h2 class="external-link" @click="openURL('https://armconverter.com/')">Online ARM to HEX Converter</h2>
     <p>アセンブラで作成したコードをニンテンドースイッチが認識できる機械語に変換するためのウェブサービス.</p>
+
+    <h1>セットアップ</h1>
+    <h2>GHIDRAの設定</h2>
+    <p>GHIDRAは初期状態ではメモリを1024MBしか使わない設定になっています. これでは少し足りないので, 設定ファイルを弄って拡張します.</p>```
+    "deploy": "gh-pages -d dist"
+    ```
   </div>
 </template>
 
