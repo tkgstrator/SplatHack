@@ -5,7 +5,7 @@
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
       <v-toolbar-title width="100px">SplatHack</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-tabs right show-arrows="true">
+      <v-tabs right>
         <v-tab>
           <router-link to="/">HOME</router-link>
         </v-tab>
@@ -17,12 +17,12 @@
         </v-tab>
         <!-- <v-tab></v-tab> -->
       </v-tabs>
-      <v-btn icon>
+      <!-- <v-btn icon>
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
       <v-btn icon>
         <v-icon>mdi-dots-vertical</v-icon>
-      </v-btn>
+      </v-btn>-->
     </v-toolbar>
   </v-card>
 </template>
