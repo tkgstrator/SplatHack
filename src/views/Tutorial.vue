@@ -31,25 +31,25 @@ export default {
       {
         title: "スペシャルコスト0",
         text: "まずは全てのブキのスペシャルコストを0にして, いつでも使えるようにしてみましょう.",
-        link: "tutorials/01",
+        link: "/tutorials/01",
         flex: 6
       },
       {
         title: "スペシャルコスト255",
         text: "実用上は不要ですが, 0ではない値への設定方法も覚えておきましょう.",
-        link: "tutorials/01",
+        link: "/tutorials/01",
         flex: 6
       },
       {
         title: "全ブキアンロック",
         text: "参照するパラメータを変更して, 未実装ブキを除く全てのブキをアンロックしてみましょう.",
-        link: "tutorials/01",
+        link: "/tutorials/01",
         flex: 6
       },
       {
         title: "ガチマッチ時間変更",
         text: "ガチマッチの試合時間は300秒ですが, この時間を好きなように変更してみましょう.",
-        link: "tutorials/01",
+        link: "/tutorials/01",
         flex: 6
       },
     ],

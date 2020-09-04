@@ -14,7 +14,7 @@
     <p>その変換をするのが次に紹介する逆アセンブラであるGHIDRAです.</p>
 
     <h2 class="external-link" @click="openURL('https://ghidra-sre.org/')">GHIDRA</h2>
-    <p>NCAが開発したARMの逆アセンブルに対応した逆アセンブラ.</p>
+    <p>NSAが開発したARMの逆アセンブルに対応した逆アセンブラ.</p>
     <p>Javaで開発されたためいろいろとっつきにくいところがあるものの, 有償であるIDA Proと遜色ない機能があり, 本チュートリアル程度であればそつなくこなせます.</p>
     <p>
       実行にはJDK11のインストールが必須で,
@@ -85,6 +85,16 @@ call "%~dp0support\launch.bat" bg Ghidra "%MAXMEM%" "" ghidra.GhidraRun %*
     <v-img src="~@/assets/img/ghidra_listing_display.gif" width="80%" max-width="600px"></v-img>
     <v-data-table :headers="headers" :items="settings" dark hide-default-footer></v-data-table>
     <p>以上でインストールとGHIDRAのセットアップは終了です.</p>
+    <h1>GHIDRAの基本的な使い方</h1>
+    <h2>アドレスジャンプ</h2>
+    <v-img src="~@/assets/img/ghidra_jump_address.gif" width="80%" max-width="600px"></v-img>
+    <p>指定したアドレスにジャンプします.</p>
+    <h2>文字列検索</h2>
+    <v-img src="~@/assets/img/ghidra_search_text.gif" width="80%" max-width="600px"></v-img>
+    <p>指定した文字列を検索します.</p>
+    <h2>参照ジャンプ</h2>
+    <v-img src="~@/assets/img/ghidra_jump_xref.gif" width="80%" max-width="600px"></v-img>
+    <p>そのデータを使用しているサブルーチンにジャンプします.</p>
   </div>
 </template>
 

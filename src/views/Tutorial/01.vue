@@ -1,58 +1,61 @@
 <template>
-  <div class="description">
-    <h1>チュートリアル</h1>
-    <v-text-area>
-      SplatHackのチュートリアルは逆アセンブラを用いて誰でも簡単にコード開発の楽しみを体験できるものになっています.
-      3.1.0を所持していない方であっても, 同じ手順を踏むことで任意のバージョンで同じコードを作成することができます.
-    </v-text-area>
-
-    <h1>初級者向け</h1>
-    <v-container fluid>
-      <v-row dense>
-        <v-col v-for="card in cardslv1" :key="card.title" :cols="card.flex">
-          <router-link :to="card.link">
-            <v-card class="hack">
-              <v-card-title>{{ card.title }}</v-card-title>
-              <v-card-text>{{ card.text }}</v-card-text>
-            </v-card>
-          </router-link>
-        </v-col>
-      </v-row>
-    </v-container>
-    <h1>中級者向け</h1>
-    <h1>上級者向け</h1>
+  <div class="tutorial">
+    <h1>オフセットを理解しよう</h1>
+    <p>肝心のコード開発チュートリアルの前に必ず覚えてほしいのがアドレスのオフセット問題である.</p>
+    <p>逆アセンブラの都合上, IDAとGHIDRAではオフセットが0x7100000000ズレてしまっており, 更にIDAでもNSOとELFで解析した場合に0x100ズレているという問題がある.</p>
+    <p>このとき, 正しいアドレスを表示しているのはNSOをIDAで解析したデータなので, GHIDRAでNSOを分析したときに表示されるアドレスは真の値から0x7100000100ズレていることになる.</p>
+    <p>このズレは厄介そうな気がするのだが, 実際にはIPSwitch側でバイトオフセットを設定することができるため, 0x100のズレに関しては考えなくて良い.</p>
+    <v-data-table :headers="headers" :items="address" dark hide-default-footer></v-data-table>
+    <p>なので, GHIDRAで開発したコードをIPSwitch形式に変換するときには「アドレスを0x7100000000減らす」または「先頭の0x71を削除する」という処理が必要なことを覚えておいてください.</p>
+    <h1>スペシャルコストを0にしよう</h1>
+    <p>スプラトゥーンではブキごとにスペシャル発動に必要な塗りポイントが決まっていますが, それは内部パラメータではスペシャルコストとして扱われています. この値を0にすることによって常にスペシャルが発動できるようになります.</p>
+    <h2>スペシャルコストを参照しているサブルーチンを見つける</h2>
+    <p>あるパラメータの値をパッチでいじろうと思った場合, 「そのパラメータが内部データ的になんと呼ばれているか」というのが必ず必要になってきます.</p>
+    <p>今回の場合は「スペシャルコスト」ということがわかっているので問題ないですが, 自分で新たに何かを弄ろうとする場合はそのパラメータ名を推測しなければいけません.</p>
+    <p>そしてパラメータ名にアタリをつけたら, テキスト検索でそのパラメータ名が「定義されている」または「呼び出されている」サブルーチンを探します.</p>
+    <p>これを全データから探すのは面倒ですが, 定義された様々なパラメータ名が載っているテーブルがあるのでその周辺を探せばあっさり見つかることが多いです.</p>
+    <v-data-table :headers="headers" :items="tables" dark hide-default-footer></v-data-table>
   </div>
 </template>
 
 <script>
 export default {
   data: () => ({
-    cardslv1: [
+    headers: [
       {
-        title: "スペシャルコスト0",
-        text: "まずは全てのブキのスペシャルコストを0にして, いつでも使えるようにしてみましょう.",
-        link: "tutorials/01",
-        flex: 6
+        text: "逆アセンブラ",
+        align: "start",
+        sortable: false,
+        value: "name"
       },
       {
-        title: "スペシャルコスト255",
-        text: "実用上は不要ですが, 0ではない値への設定方法も覚えておきましょう.",
-        link: "tutorials/01",
-        flex: 6
+        text: "アドレス",
+        align: "start",
+        sortable: false,
+        value: "offset"
+      }
+    ],
+    address: [
+      {
+        name: "GHIDRA(NSO)",
+        offset: "0x7100000000"
       },
       {
-        title: "全ブキアンロック",
-        text: "参照するパラメータを変更して, 未実装ブキを除く全てのブキをアンロックしてみましょう.",
-        link: "tutorials/01",
-        flex: 6
-      },
-      {
-        title: "ガチマッチ時間変更",
-        text: "ガチマッチの試合時間は300秒ですが, この時間を好きなように変更してみましょう.",
-        link: "tutorials/01",
-        flex: 6
+        name: "IDA(ELF)",
+        offset: "0x00000000"
       },
     ],
+    tables: [
+      {
+        name: "GHIDRA(NSO)",
+        offset: "0x71037106c4"
+      },
+      {
+        name: "IDA(ELF)",
+        offset: "0x37106c4"
+      },
+    ],
+
   }),
 }
 </script>
