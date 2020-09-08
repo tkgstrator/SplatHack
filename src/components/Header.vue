@@ -1,16 +1,18 @@
 <template>
   <v-card color="grey lighten-4" flat tile>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@500&display=swap" rel="stylesheet" />
-    <v-toolbar dense>
+    <v-toolbar dense flat short dark>
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
-      <v-toolbar-title width="100px">SplatHack</v-toolbar-title>
+      <v-toolbar-title>
+        <router-link to="/">SplatHack</router-link>
+      </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-tabs right>
         <v-tab>
-          <router-link to="/">HOME</router-link>
+          <router-link to="/install">INSTALL</router-link>
         </v-tab>
         <v-tab>
-          <router-link to="/install">INSTALL</router-link>
+          <router-link to="/basis">BASIS</router-link>
         </v-tab>
         <v-tab>
           <router-link to="/tutorials">TUTORIAL</router-link>
@@ -34,11 +36,12 @@
   margin-bottom: 50px;
 }
 
-.v-sheet.v-toolbar:not(.v-sheet--outlined) {
-  box-shadow: none !important;
-}
-
 .v-application a {
   text-decoration: none;
+}
+
+.v-toolbar__title {
+  padding-left: 0px !important;
+  width: 200px;
 }
 </style>

@@ -3,6 +3,7 @@ import VueRouter from "vue-router"
 import Home from "../views/Home.vue"
 import Tutorial from "../views/Tutorial.vue"
 import Install from "../views/Install.vue"
+import Basis from "../views/Basis.vue"
 
 Vue.use(VueRouter)
 
@@ -26,6 +27,11 @@ const routes = [
     path: "/install",
     name: "Install",
     component: Install
+  },
+  {
+    path: "/basis",
+    name: "Basis",
+    component: Basis
   },
 ]
 
